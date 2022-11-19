@@ -7,6 +7,7 @@ const Signup = () => {
     const [name ,setName] = useState('');
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
+    const [invalid , setInvalid] = useState('');
     const navigate = useNavigate();
 
     const adduser = (e) => {
@@ -33,11 +34,15 @@ const Signup = () => {
             data : data ,
             withCredentials: false
             };
-            console.log(config.data);
             axios(config)
             .then(function (response) {
+                if(response.data.status == 200) {
                 console.log(response.data);
                 navigate('/login')
+                } else if (response.data.status==400) {
+                    console.log(response.data);
+                    setInvalid(response.data.error);
+                }
             })
             .catch(function (error) {
             console.log(error);
@@ -72,6 +77,7 @@ const Signup = () => {
             </div>
             <div className="md:flex items-center mt-8">
               <div className="md:w-72 flex flex-col">
+                {invalid ? <p className="text-danger text-1xl">{invalid}</p> : ''}
                 <label className="text-base font-semibold leading-none text-gray-800">
                   Email Address
                 </label>

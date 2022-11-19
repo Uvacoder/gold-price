@@ -20,7 +20,7 @@ const Login = ({logged , setLogged}) => {
 
             var config = {
             method: 'post',
-            url: 'http://test-laravel.42web.io/login.php',
+            url: 'http://localhost/phpApi/login.php',
             headers: { 
                 
             },
