@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="container w-5/6">
+    <div className="container w-5/6 mb-24">
       <div
         className="section section-padding pb-0 "
         style={{ color: "black", textAlign: "left", marginTop: "50px" }}

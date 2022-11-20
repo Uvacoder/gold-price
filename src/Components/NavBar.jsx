@@ -1,10 +1,11 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink , useNavigate } from 'react-router-dom';
 import logo from './logo.png';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-console.log(window.location.href.includes('about'));
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -17,6 +18,7 @@ export default function Example({logged , setLogged}) {
       { name: 'About', href: 'about', current:  currentPage=='About' },
       { name: 'Contact', href: 'contact', current:  currentPage=='Contact' },
     ]
+    const navigate = useNavigate();
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -68,6 +70,9 @@ export default function Example({logged , setLogged}) {
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
+                      {localStorage.getItem('loggedin') ? 
+                      <div className='text-white mr-2 mt-2'>Welcome , {localStorage.getItem('loggedname')} </div>
+                      : '' }
                       <img
                         className="h-8 w-8 rounded-full"
                         src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
@@ -91,7 +96,18 @@ export default function Example({logged , setLogged}) {
                       <Link
                         onClick={()=>{
                           localStorage.removeItem('loggedin');
+                          localStorage.removeItem('loggedname');
                           setLogged(!logged);
+                          const MySwal = withReactContent(Swal)
+                        MySwal.fire({
+                            title: <strong>See You Soon</strong>,
+                            html: <i>You will go to Home Page</i>,
+                            icon: 'success',
+                            timer: 3000
+                        })
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 3000);
                         }}
                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                       >
@@ -106,6 +122,7 @@ export default function Example({logged , setLogged}) {
                           <Link
                             to='/login'
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            onClick={()=>setCurrentPage("Login")}
                           >
                             Login
                           </Link>
@@ -116,6 +133,7 @@ export default function Example({logged , setLogged}) {
                           <Link
                             to="/signup"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            onClick={()=>setCurrentPage("Signup")}
                           >
                             Sign Up
                           </Link>

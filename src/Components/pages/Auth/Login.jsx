@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Login = ({logged , setLogged}) => {
 
@@ -32,9 +34,19 @@ const Login = ({logged , setLogged}) => {
             console.log(response.data);
             if(response.data.status == 200) {
                 localStorage.setItem('loggedin' , response.data.data.id);
+                localStorage.setItem('loggedname' , response.data.data.full_name);
                 setInvalid('');
                 setLogged(!logged);
-                navigate('/');
+                const MySwal = withReactContent(Swal)
+                MySwal.fire({
+                    title: <strong>Welcome {response.data.data.full_name} to Website</strong>,
+                    html: <i>You will go to Home Page</i>,
+                    icon: 'success',
+                    timer: 2000
+                })
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
             } else if (response.data.status==400) {
                 setInvalid(response.data.message);
             }

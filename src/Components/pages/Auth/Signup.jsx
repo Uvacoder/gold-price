@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 
 const Signup = () => {
@@ -38,7 +40,16 @@ const Signup = () => {
             .then(function (response) {
                 if(response.data.status == 200) {
                 console.log(response.data);
-                navigate('/login')
+                const MySwal = withReactContent(Swal)
+                MySwal.fire({
+                    title: <strong>Thanks For Register</strong>,
+                    html: <i>You can Login Now</i>,
+                    icon: 'success',
+                    timer: 2000
+                })
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
                 } else if (response.data.status==400) {
                     console.log(response.data);
                     setInvalid(response.data.error);

@@ -43,7 +43,7 @@ export default function index({data}) {
                 <span className="flex items-center text-red-600 text-2xl"><BsArrowDown/> {data.ch} ({-(((data.ch/data.price)*100).toFixed(2))})% </span>
                 }
             </div>
-              {date == 'Now' ? 
+              {date == 'Now' && data.open_price? 
               <h2 className="text-1xl font-extrabold leading-7 text-center text-gray-800">Open price: {data.open_price} <br></br> High Price : {data.high_price} <br></br> Low Price : {data.low_price}</h2>
               : ''}
               </>
