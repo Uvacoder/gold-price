@@ -22,7 +22,7 @@ const Home = () => {
       method: "get",
       url: `https://www.goldapi.io/api/${metal}/${currency}`,
       headers: {
-        "x-access-token": "goldapi-jmxtlahyaszg-io",
+        "x-access-token": "goldapi-5l0egtlaptwves-io",
       },
     };
     axios(config)
@@ -47,7 +47,7 @@ const Home = () => {
       method: "get",
       url: urli,
       headers: {
-        "x-access-token": "goldapi-jmxtlahyaszg-io",
+        "x-access-token": "goldapi-5l0egtlaptwves-io",
       },
     };
     axios(config)

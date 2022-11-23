@@ -1,8 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import Logout from './Google/logout'
+import LoginGoogle from './Google/login'
+
 
 const Login = ({logged , setLogged}) => {
 
@@ -10,6 +13,7 @@ const Login = ({logged , setLogged}) => {
     const [password , setPassword] = useState('');
     const [invalid , setInvalid] = useState('');
     const navigate = useNavigate();
+    
 
     const login = (e) => {
         e.preventDefault();
@@ -22,7 +26,7 @@ const Login = ({logged , setLogged}) => {
 
             var config = {
             method: 'post',
-            url: 'http://localhost/phpApi/login.php',
+            url: 'https://test-laravel.42web.io/login.php',
             headers: { 
                 
             },
@@ -97,10 +101,12 @@ const Login = ({logged , setLogged}) => {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-center w-full">
-              <button type="submit" className="mt-9 text-base font-semibold leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none">
+            <div className="flex flex-col items-center justify-center w-full">
+              <button type="submit" className="mt-9 text-base font-semibold leading-none text-dark py-4 px-10 bg-amber-300 rounded hover:bg-amber-200 focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 focus:outline-none">
                 Login
               </button>
+              Or
+              <LoginGoogle className="mt-9 text-base font-semibold leading-none text-dark py-4 px-10 bg-amber-300 rounded hover:bg-amber-200 focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 focus:outline-none"/>
             </div>
             </form>
           </div>

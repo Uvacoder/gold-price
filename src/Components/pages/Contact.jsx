@@ -3,10 +3,10 @@ import React, { useState } from "react";
 function MyApp() {
     const [show, setShow] = useState(false);
     return (
-        <div style={{height : '850px'}}>
+        <div style={{height : '930px'}}>
         <div className="bg-gradient-to-l to-amber-300 from-stone-400 h-96 w-full">
             <div className="w-full flex items-center justify-center">
-                <div className="relative top-20 bg-white shadow rounded py-6 lg:px-28 px-8">
+                <div className="relative md:top-20 bg-white shadow rounded py-6 lg:px-28 px-8">
                     <p className="md:text-3xl text-xl font-bold leading-7 text-center text-gray-700">Contact Us !</p>
                     <div className="md:flex items-center mt-12">
                         <div className="md:w-72 flex flex-col">

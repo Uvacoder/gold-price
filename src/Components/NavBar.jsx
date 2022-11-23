@@ -17,6 +17,7 @@ export default function Example({logged , setLogged}) {
       { name: 'Home', href: '/', current: currentPage=='Home' },
       { name: 'About', href: 'about', current:  currentPage=='About' },
       { name: 'Contact', href: 'contact', current:  currentPage=='Contact' },
+      { name: 'Shop', href: 'shop', current:  currentPage=='Shop' },
     ]
     const navigate = useNavigate();
   return (
@@ -91,15 +92,27 @@ export default function Example({logged , setLogged}) {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     {localStorage.getItem('loggedin') ? 
+                    <>
+                    <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        to='/cart'
+                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      >
+                        Cart
+                      </Link>
+                    )}
+                  </Menu.Item>
                     <Menu.Item>
                     {({ active }) => (
                       <Link
                         onClick={()=>{
                           localStorage.removeItem('loggedin');
                           localStorage.removeItem('loggedname');
+                          localStorage.removeItem('cart');
                           setLogged(!logged);
                           const MySwal = withReactContent(Swal)
-                        MySwal.fire({
+                           MySwal.fire({
                             title: <strong>See You Soon</strong>,
                             html: <i>You will go to Home Page</i>,
                             icon: 'success',
@@ -115,6 +128,7 @@ export default function Example({logged , setLogged}) {
                       </Link>
                     )}
                   </Menu.Item>
+                  </>
                   :
                     <> 
                       <Menu.Item>

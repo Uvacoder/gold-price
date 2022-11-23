@@ -3,6 +3,7 @@ import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import LoginGoogle from './Google/login'
 
 
 const Signup = () => {
@@ -26,7 +27,7 @@ const Signup = () => {
 
             var config = {
             method: 'post',
-            url: 'http://localhost/phpApi/addUser.php',
+            url: 'https://test-laravel.42web.io/addUser.php',
             headers : {
                 // 'Content-Type': 'application/json',
                 // 'Access-Control-Allow-Origin': '*',
@@ -117,10 +118,13 @@ const Signup = () => {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-center w-full">
-              <button type='submit' className="mt-9 text-base font-semibold leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none">
+            <div className="flex flex-col items-center justify-center w-full">
+              <button type='submit' className="mt-9 text-base font-semibold leading-none text-dark py-4 px-10 bg-amber-300 rounded hover:bg-amber-200 focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 focus:outline-none">
                 Sign Up
               </button>
+              Or
+              <LoginGoogle className="mt-9 text-base font-semibold leading-none text-dark py-4 px-10 bg-amber-300 rounded hover:bg-amber-200 focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 focus:outline-none"/>
+            
             </div>
             </form>
           </div>
